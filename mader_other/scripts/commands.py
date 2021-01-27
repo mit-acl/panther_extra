@@ -33,7 +33,7 @@ class Mader_Commands:
         #self.pubClickedPoint = rospy.Publisher("/move_base_simple/goal",PoseStamped,queue_size=1,latch=True)
         
 
-        self.alt_taken_off = 1; #Altitude when hovering after taking off
+        self.alt_taken_off = 2.5; #Altitude when hovering after taking off
         self.alt_ground = 0; #Altitude of the ground
         self.initialized=False;
 

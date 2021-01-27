@@ -1,7 +1,13 @@
-nstall sympy in the snapdragon:
+install sympy in the snapdragon:
 
 sudo apt-get install python-sympy --no-install-recommends
 
+To run the stuff: 
+
+In Sykorsky: roslaunch behavior_selector gui.launch
+In Drone: roslaunch mader_other obstacle.launch quad:=HX04
+
+And then press start
 
 +++++++++++++++++++++++++
 Other things (don't use)
