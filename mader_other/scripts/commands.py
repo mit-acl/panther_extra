@@ -115,7 +115,7 @@ class Mader_Commands:
         #Note that self.pose.position is being updated in the parallel callback
         while(abs(self.pose.position.z-self.alt_ground)>0.1):
             goal.p.z = max(goal.p.z-0.0035, self.alt_ground);
-            rospy.sleep(0.04)
+            rospy.sleep(0.01)
             self.sendGoal(goal)
         #Kill motors once we are on the ground
         self.kill()
