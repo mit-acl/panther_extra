@@ -33,7 +33,7 @@ class Mader_Commands:
         #self.pubClickedPoint = rospy.Publisher("/move_base_simple/goal",PoseStamped,queue_size=1,latch=True)
         
 
-        self.alt_taken_off = 2.5; #Altitude when hovering after taking off
+        # self.alt_taken_off = 2.5; #Altitude when hovering after taking off
         self.alt_ground = 0; #Altitude of the ground
         self.initialized=False;
 
@@ -83,13 +83,16 @@ class Mader_Commands:
         goal.p.z = self.pose.position.z;
         goal.yaw = quat2yaw(self.pose.orientation)
         goal.power= True; #Turn on the motors
-        #Note that self.pose.position is being updated in the parallel callback
 
+        alt_taken_off = self.pose.position.z + 1.0; #Altitude when hovering after taking off
+
+
+        #Note that self.pose.position is being updated in the parallel callback
         ######## Commented for simulations
-        while(  abs(self.pose.position.z-self.alt_taken_off)>0.2  ):  
-            goal.p.z = min(goal.p.z+0.0035, self.alt_taken_off);
+        while(  abs(self.pose.position.z-alt_taken_off)>0.2  ):  
+            goal.p.z = min(goal.p.z+0.0035, alt_taken_off);
             rospy.sleep(0.004) 
-            rospy.loginfo_throttle(0.5, "Taking off..., error={}".format(self.pose.position.z-self.alt_taken_off) )
+            rospy.loginfo_throttle(0.5, "Taking off..., error={}".format(self.pose.position.z-alt_taken_off) )
             self.sendGoal(goal)
         ######## 
         rospy.sleep(0.1) 
@@ -111,6 +114,7 @@ class Mader_Commands:
         #Note that self.pose.position is being updated in the parallel callback
         while(abs(self.pose.position.z-self.alt_ground)>0.1):
             goal.p.z = max(goal.p.z-0.0035, self.alt_ground);
+            rospy.sleep(0.04)
             self.sendGoal(goal)
         #Kill motors once we are on the ground
         self.kill()
