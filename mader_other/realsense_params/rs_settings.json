@@ -56,7 +56,7 @@
     "param-maxscorethreshb": "2047",
     "param-medianthreshold": "500",
     "param-minscorethresha": "1",
-    "param-neighborthresh": "502",
+    "param-neighborthresh": "620",
     "param-raumine": "1",
     "param-rauminn": "1",
     "param-rauminnssum": "3",
