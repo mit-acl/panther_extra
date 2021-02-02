@@ -1,4 +1,5 @@
 Header header
+bool use_pwp_field
 string[] function #This field is only used by the obstacles (i.e. when is_agent==false)
 float32[] bbox             #bounding box. It has three elements: hx, hy, hz (bbox of size hx x hy x hz)
 geometry_msgs/Vector3 pos  #current position (x,y,z). #TODO (improvement): remove this field (as the current pos will depend when the trajectory is received in the callback)
