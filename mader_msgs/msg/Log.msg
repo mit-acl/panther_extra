@@ -1,5 +1,7 @@
 Header header
 
+float64 ms_initial_setup
+float64 ms_convex_hulls
 float64 ms_opt
 float64 ms_guess_pos
 float64 ms_guess_yaw_search_graph
