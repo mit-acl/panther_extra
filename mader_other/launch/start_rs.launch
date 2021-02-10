@@ -12,7 +12,7 @@
 <!-- NOt using tf2_ros here because of all the issues with /tf_static and rosbags -->
 <!-- See https://github.com/ros/robot_state_publisher/issues/105#issuecomment-467406420 -->
 
-<node pkg="tf" type="static_transform_publisher" name="drone2camera" args="0.2 0.0 0.0 0.0 0.0 3.14 $(arg quad) $(arg quad)/camera 10" />
+<node pkg="tf" type="static_transform_publisher" name="drone2camera" args="0.2 0.0 0.2 0.0 -0.1 0.0 $(arg quad) $(arg quad)/camera 10" />
 <node pkg="tf" type="static_transform_publisher" name="camera2camera_link" args="0.0 0.0 0.0 0.0 0 0.0 $(arg quad)/camera $(arg quad)/camera_link 10" />
 
 <!-- <node pkg="tf2_ros" type="static_transform_publisher" name="link1_broadcaster" args="0.2 0.0 0.0 0.0 0.0 3.14 SQ04 SQ04/camera" />
@@ -26,17 +26,22 @@
        args="record -o /home/ubuntu/Desktop/bags/nuc 
 
 /$(arg quad)/camera/color/image_raw/compressed
-/$(arg quad)/camera/depth/camera_info 
-/$(arg quad)/camera/depth/image_rect_raw/compressed 
-/$(arg quad)/camera/depth/points 
+/$(arg quad)/camera/color/camera_info  
+/$(arg quad)/camera/depth/color/points 
 /tf 
 /rosout 
 /tf_static"
        if="$(arg record)" />
 
+<node  ns="$(arg quad)" name="my_configure_filter" pkg="dynamic_reconfigure" type="dynparam"
+  args="set_from_parameters camera/decimation">
+    <param name="filter_magnitude" value="2.0"/>
+  </node>
+
+
 
  <!-- For the part below, see http://wiki.ros.org/depth_image_proc#line-213-5:~:text=For%20example%2C%20the%20launch%20file%20to%20execute%20a%20'point_cloud_xyz'%20nodelet%20is%20like%20as -->
-
+<!--
   <node pkg="nodelet" type="nodelet" name="nodelet_manager" args="manager" />
 
   <node pkg="nodelet" type="nodelet" name="nodelet1"
@@ -46,11 +51,7 @@
     <remap from="points" to="$(arg quad)/camera/depth/points"/>
   </node>
 
-
-<node  ns="$(arg quad)" name="my_configure_filter" pkg="dynamic_reconfigure" type="dynparam"
-	args="set_from_parameters camera/decimation">
-    <param name="filter_magnitude" value="6.0"/>
-  </node>
+-->
 
 
 </launch>
