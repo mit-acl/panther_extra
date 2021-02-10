@@ -20,14 +20,15 @@ QUAD=$VEH$NUM
 SESSION=remote_$QUAD
 
 
-ssh -t root@QUAD.local "ntpdate time.nist.gov"
-
 # check that an ssh connection can even be made
 ssh -q root@$QUAD.local exit
 if [ $? -ne 0 ]; then
     echo -e "\033[0;31mNo connection to $QUAD\033[0m"
     exit
 fi
+
+ssh -t root@$QUAD.local "ntpdate time.nist.gov"
+
 
 cmd="new-session -d -s $SESSION"
 cmd="$cmd ; split-window -h"
