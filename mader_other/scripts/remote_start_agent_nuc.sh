@@ -29,6 +29,8 @@ echo "----> Starting NUC!"
 # ssh -t nvidia@J$QUAD.local "sudo nvpmodel -m 0 && sleep 1 && sudo ~/jetson_clocks.sh"
 
 
+ssh -t ubuntu@NHX09.local "sudo ntpdate time.nist.gov"
+
 # tmux new -s session_name
 tmux new-session -d -s session_jetson
 tmux send-keys 'ssh ubuntu@NHX09.local' C-m

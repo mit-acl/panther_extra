@@ -20,6 +20,8 @@ QUAD=$VEH$NUM
 SESSION=remote_$QUAD
 
 
+ssh -t root@QUAD.local "ntpdate time.nist.gov"
+
 # check that an ssh connection can even be made
 ssh -q root@$QUAD.local exit
 if [ $? -ne 0 ]; then
