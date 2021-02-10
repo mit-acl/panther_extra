@@ -1,18 +1,18 @@
-[To add to the remote_start_agent.launch]
+# [To add to the remote_start_agent.launch]
 
 
-#Check if the USB is connected
-if ls /media/nvidia | grep -q 'jesus_usb'; then
-   echo "Usb detected!"
-else
-	echo "PLEASE CONNECT THE USB!!"
-	exit 1
-fi
+# #Check if the USB is connected
+# if ls /media/nvidia | grep -q 'jesus_usb'; then
+#    echo "Usb detected!"
+# else
+# 	echo "PLEASE CONNECT THE USB!!"
+# 	exit 1
+# fi
 
 
-ssh nvidia@JSQ04 sudo nvpmodel -m 0
-sleep(1)
-ssh nvidia@JSQ04 sudo ~/jetson_clocks.sh
+# ssh nvidia@JSQ04 sudo nvpmodel -m 0
+# sleep(1)
+# ssh nvidia@JSQ04 sudo ~/jetson_clocks.sh
 
 
 #Try https://github.com/IntelRealSense/realsense-ros/issues/347#issuecomment-447648813-permalink:~:text=The%20following%20command%20will%20publish%20a,roslaunch%20realsense2_camera%20rs_camera.launch%20filters%3A%3Dpointcloud%20pointcloud_texture_stream%3A%3DRS2_STREAM_ANY%20enable_color%3A%3Dfalse
