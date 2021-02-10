@@ -67,15 +67,7 @@ Visualization Manager:
       Frame Timeout: 1000
       Frames:
         All Enabled: false
-        SQ04:
-          Value: true
-        SQ04/camera:
-          Value: true
-        obs_4000:
-          Value: true
-        obs_4001:
-          Value: true
-        vicon:
+        HX09:
           Value: true
         world:
           Value: true
@@ -86,14 +78,8 @@ Visualization Manager:
       Show Names: true
       Tree:
         world:
-          obs_4000:
+          HX09:
             {}
-          obs_4001:
-            {}
-          vicon:
-            SQ04:
-              SQ04/camera:
-                {}
       Update Interval: 0
       Value: true
     - Alpha: 1
@@ -162,32 +148,12 @@ Visualization Manager:
         {}
       Queue Size: 100
       Value: false
-    - Alpha: 0.200000003
-      BoundColor: 0; 255; 0
-      Class: decomp_rviz_plugins/PolyhedronArray
+    - Class: decomp_rviz_plugins/PolyhedronArray
       Enabled: false
-      MeshColor: 252; 175; 62
       Name: PolySafe
-      Scale: 0.100000001
-      State: Both
-      Topic: /SQ01s/cvx/polyhedron_array_occupied2
-      Unreliable: false
-      Value: false
-      VsColor: 61; 255; 116
-      VsScale: 1
-    - Alpha: 0.200000003
-      BoundColor: 255; 154; 140
-      Class: decomp_rviz_plugins/PolyhedronArray
+    - Class: decomp_rviz_plugins/PolyhedronArray
       Enabled: false
-      MeshColor: 255; 255; 0
       Name: PolyWhole
-      Scale: 0.100000001
-      State: Both
-      Topic: /SQ01s/cvx/polyhedron_array_occupied
-      Unreliable: false
-      Value: false
-      VsColor: 255; 154; 140
-      VsScale: 1
     - Alpha: 1
       Autocompute Intensity Bounds: true
       Autocompute Value Bounds:
@@ -231,7 +197,7 @@ Visualization Manager:
       Marker Topic: /obstacles_mesh
       Name: Obstacles
       Namespaces:
-        mesh: true
+        {}
       Queue Size: 100
       Value: true
     - Class: rviz/MarkerArray
@@ -346,44 +312,12 @@ Visualization Manager:
         {}
       Queue Size: 100
       Value: true
-    - Align Bottom: false
-      Background Alpha: 0.800000012
-      Background Color: 0; 0; 0
-      Class: jsk_rviz_plugin/OverlayText
+    - Class: jsk_rviz_plugin/OverlayText
       Enabled: false
-      Foreground Alpha: 0.800000012
-      Foreground Color: 25; 255; 240
       Name: OpsProblemRun
-      Overtake Color Properties: false
-      Overtake Position Properties: false
-      Topic: ""
-      Value: false
-      font: DejaVu Sans Mono
-      height: 128
-      left: 0
-      line width: 2
-      text size: 12
-      top: 0
-      width: 128
-    - Align Bottom: false
-      Background Alpha: 0.800000012
-      Background Color: 0; 0; 0
-      Class: jsk_rviz_plugin/OverlayText
+    - Class: jsk_rviz_plugin/OverlayText
       Enabled: false
-      Foreground Alpha: 0.800000012
-      Foreground Color: 25; 255; 240
       Name: Console
-      Overtake Color Properties: false
-      Overtake Position Properties: false
-      Topic: ""
-      Value: false
-      font: DejaVu Sans Mono
-      height: 128
-      left: 0
-      line width: 2
-      text size: 12
-      top: 0
-      width: 128
     - Class: rviz/MarkerArray
       Enabled: true
       Marker Topic: /SQ01s/mader/traj_safe_colored
@@ -515,67 +449,27 @@ Visualization Manager:
     - Class: jsk_rviz_plugin/TFTrajectory
       Enabled: false
       Name: TFTrajectory
-      Value: false
-      color: 25; 255; 240
-      duration: 10
-      frame: ""
-      line_width: 0.00999999978
     - Class: jsk_rviz_plugin/TFTrajectory
       Enabled: false
       Name: TFTrajectory
-      Value: false
-      color: 25; 255; 240
-      duration: 10
-      frame: ""
-      line_width: 0.00999999978
     - Class: jsk_rviz_plugin/TFTrajectory
       Enabled: false
       Name: TFTrajectory
-      Value: false
-      color: 25; 255; 240
-      duration: 10
-      frame: ""
-      line_width: 0.00999999978
     - Class: jsk_rviz_plugin/TFTrajectory
       Enabled: false
       Name: TFTrajectory
-      Value: false
-      color: 25; 255; 240
-      duration: 10
-      frame: ""
-      line_width: 0.00999999978
     - Class: jsk_rviz_plugin/TFTrajectory
       Enabled: false
       Name: TFTrajectory
-      Value: false
-      color: 25; 255; 240
-      duration: 10
-      frame: ""
-      line_width: 0.00999999978
     - Class: jsk_rviz_plugin/TFTrajectory
       Enabled: false
       Name: TFTrajectory
-      Value: false
-      color: 25; 255; 240
-      duration: 10
-      frame: ""
-      line_width: 0.00999999978
     - Class: jsk_rviz_plugin/TFTrajectory
       Enabled: false
       Name: TFTrajectory
-      Value: false
-      color: 25; 255; 240
-      duration: 10
-      frame: ""
-      line_width: 0.00999999978
     - Class: jsk_rviz_plugin/TFTrajectory
       Enabled: false
       Name: TFTrajectory
-      Value: false
-      color: 25; 255; 240
-      duration: 10
-      frame: ""
-      line_width: 0.00999999978
     - Class: rviz/Marker
       Enabled: true
       Marker Topic: /SQ01s/mader/actual_traj
@@ -1029,25 +923,25 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/ThirdPersonFollower
-      Distance: 12.564518
+      Distance: 12.9906006
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.0599999987
         Stereo Focal Distance: 1
         Swap Stereo Eyes: false
         Value: false
       Focal Point:
-        X: 1.65355349
-        Y: 2.05208325
-        Z: 5.54053531e-06
+        X: -0.230867863
+        Y: 3.11003232
+        Z: 3.63318668e-06
       Focal Shape Fixed Size: true
       Focal Shape Size: 0.0500000007
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.00999999978
-      Pitch: 0.969796777
+      Pitch: 0.339797199
       Target Frame: <Fixed Frame>
       Value: ThirdPersonFollower (rviz)
-      Yaw: 2.66497612
+      Yaw: 3.34997439
     Saved: ~
 Window Geometry:
   Camera:
@@ -1071,5 +965,5 @@ Window Geometry:
   Views:
     collapsed: true
   Width: 1855
-  X: 65
+  X: 3905
   Y: 24
