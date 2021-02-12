@@ -14,6 +14,9 @@ float64 yaw_smooth_cost
 float64 final_pos_cost
 float64 final_yaw_cost
 
+geometry_msgs/Vector3 tracking_now_pos
+geometry_msgs/Vector3 tracking_now_vel
+
 bool success_guess_pos 
 bool success_guess_yaw 
 bool success_opt 

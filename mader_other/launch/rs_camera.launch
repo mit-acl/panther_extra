@@ -45,7 +45,7 @@
   <arg name="tf_publish_rate"           default="0"/>
 
   <arg name="filters"                   default="decimation"/> <!--decimation-->
-  <arg name="clip_distance"             default="5.0"/>
+  <arg name="clip_distance"             default="7.0"/>
   <arg name="linear_accel_cov"          default="0.01"/>
   <arg name="initial_reset"             default="false"/>
   <arg name="unite_imu_method"          default=""/>
