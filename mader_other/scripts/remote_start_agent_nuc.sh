@@ -34,6 +34,12 @@ ssh -t ubuntu@NHX09.local "sudo ntpdate time.nist.gov"
 # tmux new -s session_name
 tmux new-session -d -s session_jetson
 tmux send-keys 'ssh ubuntu@NHX09.local' C-m
-tmux send-keys 'source /home/ubuntu/.bashrc &&    source /opt/ros/melodic/setup.bash &&   source /home/ubuntu/Desktop/ws/devel/setup.bash &&   roslaunch mader_other start_rs.launch' C-m
+tmux send-keys 'my_date=$(date '+%Y_%m_%d_%H_%M_%S') && (source /home/ubuntu/.bashrc &&    source /opt/ros/melodic/setup.bash &&   source /home/ubuntu/Desktop/ws/devel/setup.bash && 
+ roscd mader && git rev-parse HEAD && git diff --color && cd /home/ubuntu/Desktop/bags/ &&
+ roslaunch mader hw.launch perfect_prediction:=false) 2>&1 | tee /home/ubuntu/Desktop/bags/mader_${my_date}.txt' C-m #roslaunch mader hw.launch perfect_prediction:=true //start_rs.launch
+
+
+
+# tee mader_${my_date}.txt
 
 tmux -2 attach-session -t session_jetson
