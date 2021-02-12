@@ -50,15 +50,37 @@ for _pane in $(tmux list-pane -F '#P'); do
 done
 
 tmux send-keys -t $SESSION:0.4 "imu_app -s 2" C-m
-tmux send-keys -t $SESSION:0.5 "roslaunch snap snap.launch" C-m
-#tmux send-keys -t $SESSION:0.0 "roslaunch aclswarm snapstack_cntrl.launch" C-m
 tmux send-keys -t $SESSION:0.0 "roslaunch outer_loop cntrl.launch" C-m
 tmux send-keys -t $SESSION:0.3 "roslaunch snap esc.launch" C-m
-# tmux send-keys -t $SESSION:0.1 "roslaunch mader_other obstacle.launch quad:=$VEH$NUM" C-m
 
-#tmux send-keys -t $SESSION:0.1 "roslaunch aclswarm start.launch veh:=$VEH$NUM use_assignment:=true"
-#tmux send-keys -t $SESSION:0.2 "roslaunch vislam vislam.launch initLnDepth:=-2.617" # on stand
-#tmux send-keys -t $SESSION:0.6 "rosrun aclswarm bagrecord.sh -o $VEH$NUM"
+
+#IF YOU WANNA USE VIO
+tmux send-keys -t $SESSION:0.5 "roslaunch snap snap.launch extpose:=pose_selector/vislam_registered" C-m
+tmux send-keys -t $SESSION:0.1 "roslaunch vislam_utils pose_selector.launch shutdown_mocap:=true" C-m
+tmux send-keys -t $SESSION:0.2 "roslaunch vislam vislam.launch initLnDepth:=-2.617" C-m # on stand
+
+
+#IF YOU WANNA USE MOCAP (VICON)
+# tmux send-keys -t $SESSION:0.5 "roslaunch snap snap.launch" C-m
+
 
 tmux select-pane -t $SESSION:0.1
 tmux -2 attach-session -t $SESSION
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#tmux send-keys -t $SESSION:0.0 "roslaunch aclswarm snapstack_cntrl.launch" C-m
+# tmux send-keys -t $SESSION:0.1 "roslaunch mader_other obstacle.launch quad:=$VEH$NUM" C-m
+#tmux send-keys -t $SESSION:0.1 "roslaunch aclswarm start.launch veh:=$VEH$NUM use_assignment:=true"
+#tmux send-keys -t $SESSION:0.6 "rosrun aclswarm bagrecord.sh -o $VEH$NUM"
