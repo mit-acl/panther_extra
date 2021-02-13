@@ -58,6 +58,7 @@ tmux send-keys -t $SESSION:0.3 "roslaunch snap esc.launch" C-m
 tmux send-keys -t $SESSION:0.5 "roslaunch snap snap.launch extpose:=pose_selector/vislam_registered" C-m
 tmux send-keys -t $SESSION:0.1 "roslaunch vislam_utils pose_selector.launch shutdown_mocap:=true" C-m
 tmux send-keys -t $SESSION:0.2 "roslaunch vislam vislam.launch initLnDepth:=-2.617" C-m # on stand
+tmux send-keys -t $SESSION:0.6 "cd /media/sdcard/bags && rosbag record -o sd /HX09/state /HX09/log /HX09/image_raw/compressed /HX09/vio/map_points" C-m
 
 
 #IF YOU WANNA USE MOCAP (VICON)
@@ -66,12 +67,6 @@ tmux send-keys -t $SESSION:0.2 "roslaunch vislam vislam.launch initLnDepth:=-2.6
 
 tmux select-pane -t $SESSION:0.1
 tmux -2 attach-session -t $SESSION
-
-
-
-
-
-
 
 
 
