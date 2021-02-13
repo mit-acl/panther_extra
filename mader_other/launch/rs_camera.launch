@@ -21,6 +21,8 @@
   <arg name="enable_infra1"       default="false"/>
   <arg name="enable_infra2"       default="false"/>
 
+<!-- 1920x1080 (6,15,30 fps) 1280x720 (6,15,30 fps) 960x540 (6,15,30,60 fps) 848x480 (6,15,30,60 fps) 640x480 (6,15,30,60 fps) 640x360 (6,15,30,60 fps) 424x240 (6,15,30,60 fps) 320x240 (6,30,60 fps) 320x180 (6,30,60 fps) See Table 4.2 of https://www.intel.com/content/dam/support/us/en/documents/emerging-technologies/intel-realsense-technology/Intel-RealSense-D400-Series-Datasheet.pdf
+ -->
   <arg name="color_width"         default="640"/>
   <arg name="color_height"        default="480"/>
   <arg name="enable_color"        default="true"/>
