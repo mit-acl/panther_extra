@@ -49,7 +49,7 @@ class Obstacle_Planner:
 
         self.dyn_traj_msg=DynTraj(); 
         self.dyn_traj_msg.is_agent=False;
-        self.dyn_traj_msg.function = [str(self.traj[0]), str(self.traj[1]), str(self.traj[2]-self.bbox[2]/2.0)] #Two notes here:
+        self.dyn_traj_msg.s_mean = [str(self.traj[0]), str(self.traj[1]), str(self.traj[2]-self.bbox[2]/2.0)] #Two notes here:
                                                                                                                    #dyn_traj_msg will not be accurate in the line/polynomial segments, but don't care about them (initialization) 
                                                                                                                    #I'm substracting self.bbox[2]/2.0 because in the obstacles-drones, the drone is on top of the cylinder that makes the obstacle 
         self.dyn_traj_msg.bbox = self.bbox;# [bbox[0], bbox[1], bbox[2]]; 
@@ -253,9 +253,9 @@ class Obstacle_Planner:
 
     def pubTrajCB(self, timer):
         t=rospy.get_time();
-        self.dyn_traj_msg.pos.x=eval(self.dyn_traj_msg.function[0])
-        self.dyn_traj_msg.pos.y=eval(self.dyn_traj_msg.function[1])
-        self.dyn_traj_msg.pos.z=eval(self.dyn_traj_msg.function[2])
+        self.dyn_traj_msg.pos.x=eval(self.dyn_traj_msg.s_mean[0])
+        self.dyn_traj_msg.pos.y=eval(self.dyn_traj_msg.s_mean[1])
+        self.dyn_traj_msg.pos.z=eval(self.dyn_traj_msg.s_mean[2])
         self.dyn_traj_msg.header.stamp= rospy.Time.now();
         self.pubTraj.publish(self.dyn_traj_msg);
 
