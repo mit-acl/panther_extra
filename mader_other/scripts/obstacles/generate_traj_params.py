@@ -23,7 +23,7 @@ def getTrefoil(tt,offset,slower,lim_x, lim_y, lim_z):
 Drone = collections.namedtuple('Drone', ["name","bbox", "slower", "offset", "lim_x", "lim_y", "lim_z"])
 
 all_drones=[     #"name",     "bbox",      "slower", "offset", "lim_x",    "lim_y",    "lim_z"
-            Drone("HX04", [0.5, 0.5, 2.5],  4.5,   0.0,    [-2.0,2.0],   [-2.0,2.0],  [1.8,3.0]),
+            Drone("HX04", [0.5, 0.5, 2.5],  3.8,   0.0,    [-2.0,2.0],   [-2.0,2.0],  [1.8,3.0]),
             Drone("SQ02s", [0.5, 0.5, 2.5],  3.0,   2*np.pi/4,    [-3.0,3.0],   [-3.0,3.0],  [1.0,3.0]),
             Drone("SQ03s", [0.5, 0.5, 2.5],  3.0,   2*2*np.pi/4,    [-3.0,3.0],   [-3.0,3.0],  [1.0,3.0]),
             Drone("SQ04s", [1.5, 1.5, 1.5],  3.0,   3*2*np.pi/4,    [-3.0,3.0],   [-3.0,3.0],  [1.0,3.0])
