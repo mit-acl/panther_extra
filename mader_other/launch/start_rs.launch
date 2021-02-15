@@ -1,0 +1,64 @@
+<launch>
+
+ <arg name="record" default="true" />
+<arg name="quad" default="HX09"/>
+<arg name="pub_tf_drone2camera" default="true"/>
+
+    <include file="$(find mader_other)/launch/rs_camera.launch">
+      <arg name="camera"                value="$(arg quad)/camera"/>
+    </include>
+
+
+
+<group if="$(arg pub_tf_drone2camera)">
+
+<!-- NOt using tf2_ros here because of all the issues with /tf_static and rosbags -->
+<!-- See https://github.com/ros/robot_state_publisher/issues/105#issuecomment-467406420 -->
+
+  <node pkg="tf" type="static_transform_publisher" name="drone2camera" args="0.1 0.0 0.09 0.05 -0.15 0.0 $(arg quad) $(arg quad)/camera_link 5" />
+  <!-- <node pkg="tf" type="static_transform_publisher" name="camera2camera_link" args="0.0 0.0 0.0 0.0 0 0.0 $(arg quad)/camera $(arg quad)/camera_link 10" /> -->
+
+<!-- <node pkg="tf2_ros" type="static_transform_publisher" name="link1_broadcaster" args="0.2 0.0 0.0 0.0 0.0 3.14 SQ04 SQ04/camera" />
+<node pkg="tf2_ros" type="static_transform_publisher" name="link2_broadcaster" args="0.0 0.0 0.0 0.0 0 0.0 SQ04/camera SQ04/camera_link" />
+ -->
+ </group>
+
+
+
+ <!--/media/ubuntu/jesus_usb/bags/camera -->
+
+ <node pkg="rosbag" type="record" name="rosbag_record_camera"
+       args="record -o /home/ubuntu/Desktop/bags/camera 
+
+/$(arg quad)/camera/color/image_raw/compressed
+/$(arg quad)/camera/color/camera_info  
+/$(arg quad)/camera/depth/color/points 
+/tf 
+/rosout 
+/tf_static"
+       if="$(arg record)" />
+
+<node  ns="$(arg quad)" name="my_configure_filter" pkg="dynamic_reconfigure" type="dynparam"
+  args="set_from_parameters camera/decimation">
+    <param name="filter_magnitude" value="2.0"/>
+  </node>
+
+
+<!-- /$(arg quad)/camera/color/image_raw/compressed -->
+
+
+ <!-- For the part below, see http://wiki.ros.org/depth_image_proc#line-213-5:~:text=For%20example%2C%20the%20launch%20file%20to%20execute%20a%20'point_cloud_xyz'%20nodelet%20is%20like%20as -->
+<!--
+  <node pkg="nodelet" type="nodelet" name="nodelet_manager" args="manager" />
+
+  <node pkg="nodelet" type="nodelet" name="nodelet1"
+        args="load depth_image_proc/point_cloud_xyz nodelet_manager">
+    <remap from="camera_info" to="$(arg quad)/camera/depth/camera_info"/>
+    <remap from="image_rect" to="$(arg quad)/camera/depth/image_rect_raw"/>
+    <remap from="points" to="$(arg quad)/camera/depth/points"/>
+  </node>
+
+-->
+
+
+</launch>

@@ -52,7 +52,7 @@ add_message_files(
   WhoPlans.msg
   DynTraj.msg
   PieceWisePolTraj.msg
-  CoeffPoly3.msg
+  CoeffPoly.msg
   Log.msg
   Logtp.msg
 )
