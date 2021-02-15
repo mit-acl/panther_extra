@@ -15,7 +15,7 @@
 <!-- NOt using tf2_ros here because of all the issues with /tf_static and rosbags -->
 <!-- See https://github.com/ros/robot_state_publisher/issues/105#issuecomment-467406420 -->
 
-  <node pkg="tf" type="static_transform_publisher" name="drone2camera" args="0.1 0.0 0.09 0.0 -0.22 0.0 $(arg quad) $(arg quad)/camera_link 10" />
+  <node pkg="tf" type="static_transform_publisher" name="drone2camera" args="0.1 0.0 0.09 0.05 -0.15 0.0 $(arg quad) $(arg quad)/camera_link 5" />
   <!-- <node pkg="tf" type="static_transform_publisher" name="camera2camera_link" args="0.0 0.0 0.0 0.0 0 0.0 $(arg quad)/camera $(arg quad)/camera_link 10" /> -->
 
 <!-- <node pkg="tf2_ros" type="static_transform_publisher" name="link1_broadcaster" args="0.2 0.0 0.0 0.0 0.0 3.14 SQ04 SQ04/camera" />
@@ -43,6 +43,8 @@
     <param name="filter_magnitude" value="2.0"/>
   </node>
 
+
+<!-- /$(arg quad)/camera/color/image_raw/compressed -->
 
 
  <!-- For the part below, see http://wiki.ros.org/depth_image_proc#line-213-5:~:text=For%20example%2C%20the%20launch%20file%20to%20execute%20a%20'point_cloud_xyz'%20nodelet%20is%20like%20as -->
