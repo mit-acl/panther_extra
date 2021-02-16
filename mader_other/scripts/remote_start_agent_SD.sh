@@ -58,7 +58,7 @@ tmux send-keys -t $SESSION:0.3 "roslaunch snap esc.launch" C-m
 tmux send-keys -t $SESSION:0.5 "roslaunch snap snap.launch extpose:=pose_selector/vislam_registered" C-m
 tmux send-keys -t $SESSION:0.1 "roslaunch vislam_utils pose_selector.launch shutdown_mocap:=true" C-m
 tmux send-keys -t $SESSION:0.2 "roslaunch vislam vislam.launch initLnDepth:=-2.617" C-m # on stand
-tmux send-keys -t $SESSION:0.6 "my_date=$(date '+%Y_%m_%d_%H_%M_%S') && (sleep 3 && rosservice call /HX09/pose_selector/sample '{}' && sleep 5 && rosservice call /HX09/pose_selector/select 'data: true' && cd /media/sdcard/bags && rosbag record -o sd /HX09/state /HX09/log /HX09/image_raw/compressed /HX09/vio/map_points /HX09/motors /HX09/log /HX09/state) | tee /media/sdcard/bags/sd_${my_date}.txt" C-m
+tmux send-keys -t $SESSION:0.6 "my_date=$(date '+%Y_%m_%d_%H_%M_%S') && (sleep 3 && rosservice call /HX09/pose_selector/sample '{}' && sleep 10 && rosservice call /HX09/pose_selector/select 'data: true' && cd /media/sdcard/bags && rosbag record -o sd /HX09/state /HX09/log /HX09/image_raw/compressed /HX09/vio/map_points /HX09/motors /HX09/log /HX09/state) | tee /media/sdcard/bags/sd_${my_date}.txt" C-m
 #Then, you should either switch off vicon, uncheck this drone in the vicon software, or change its name in vicon to HX09gt (ground thruth or something like that)
 
 #IF YOU WANNA USE MOCAP (VICON)
