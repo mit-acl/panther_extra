@@ -9,9 +9,9 @@ import rospkg
 import collections
 
 def getTrefoil(tt,offset,slower,lim_x, lim_y, lim_z):
-    x=(sp.sin(tt/slower+offset)+2*sp.sin(2*(tt/slower)+offset)+3)/6; # in [0,1] approx
-    y=(sp.cos(tt/slower+offset)-2*sp.cos(2*(tt/slower)+offset)+3)/6;
-    z=((-sp.sin(3*(tt/slower)+offset))+1.0)/2.0; # in [0,1] approx
+    x=(sp.sin((tt+slower*offset)/slower)+2*sp.sin(2*((tt+slower*offset)/slower))+3)/6; # in [0,1] approx
+    y=(sp.cos((tt+slower*offset)/slower)-2*sp.cos(2*((tt+slower*offset)/slower))+3)/6;
+    z=((-sp.sin(3*((tt+slower*offset)/slower)))+1.0)/2.0; # in [0,1] approx
 
     x=min(lim_x)+(max(lim_x)-min(lim_x))*x
     y=min(lim_y)+(max(lim_y)-min(lim_y))*y
@@ -22,11 +22,19 @@ def getTrefoil(tt,offset,slower,lim_x, lim_y, lim_z):
 #bbox has three elements: [hx, hy, hz] (bbox of size hx x hy x hz)
 Drone = collections.namedtuple('Drone', ["name","bbox", "slower", "offset", "lim_x", "lim_y", "lim_z"])
 
+lim_x=[-3.0,3.0]
+lim_y=[-3.0,3.0]
+
+
+zmin=1.3
+zmax=2.5
+ofz1=0.5;
+ofz2=1.0
+
 all_drones=[     #"name",     "bbox",      "slower", "offset", "lim_x",    "lim_y",    "lim_z"
-            Drone("HX04", [0.5, 0.5, 2.5],  2.2,   0.0,    [-2.0,2.0],   [-2.0,2.0],  [1.8,3.0]),
-            Drone("HX08", [0.5, 0.5, 2.5],  2.2,   2*np.pi/3.0,    [-2.0,2.0],   [-2.0,2.0],  [1.8,3.0]),
-            Drone("HX06", [0.5, 0.5, 2.5],  2.2,   2*2*np.pi/3.0,    [-2.0,2.0],   [-2.0,2.0],  [1.8,3.0]),
-            Drone("SQ04s", [1.5, 1.5, 1.5],  3.0,   3*2*np.pi/4,    [-3.0,3.0],   [-3.0,3.0],  [1.0,3.0])
+            Drone("HX04", [0.5, 0.5, 2.5],  2.2,   0.0,           lim_x,   lim_y,  [zmin,zmax]),
+            Drone("HX08", [0.5, 0.5, 2.5],  2.2,   2*np.pi/3.0,   lim_x,   lim_y,  [zmin+ofz1,zmax+ofz1]),
+            Drone("HX06", [0.5, 0.5, 2.5],  2.2,   2*2*np.pi/3.0, lim_x,   lim_y,  [zmin+ofz2,zmax+ofz2])
             ]
 
 
