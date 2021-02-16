@@ -39,8 +39,8 @@ Drone = collections.namedtuple('Drone', ["name","bbox", "slower", "offset", "lim
 
 
 
-lcx=-3.8; #low_corner_x
-lcy=-3.43;#low_corner_y
+lcx=-3.8+0.6; #low_corner_x
+lcy=-3.43+0.6;#low_corner_y
 
 dx=2.16;
 dy=2.0;
