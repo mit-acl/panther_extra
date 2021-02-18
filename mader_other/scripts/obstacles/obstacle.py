@@ -49,7 +49,9 @@ class Obstacle_Planner:
 
         self.dyn_traj_msg=DynTraj(); 
         self.dyn_traj_msg.is_agent=False;
-        self.dyn_traj_msg.function = [str(self.traj[0]), str(self.traj[1]), str(self.traj[2]-self.bbox[2]/2.0)] #Two notes here:
+
+        #TODO: note that in pubCB I'm not using rosTime direcly. Need to include this "offset" in the strings below. Not important when dyn_traj_msg is not used by MADER (i.e. when MADER is running its own tracker)
+        self.dyn_traj_msg.s_mean = [str(self.traj[0]), str(self.traj[1]), str(self.traj[2]-self.bbox[2]/2.0)] #Two notes here:
                                                                                                                    #dyn_traj_msg will not be accurate in the line/polynomial segments, but don't care about them (initialization) 
                                                                                                                    #I'm substracting self.bbox[2]/2.0 because in the obstacles-drones, the drone is on top of the cylinder that makes the obstacle 
         self.dyn_traj_msg.bbox = self.bbox;# [bbox[0], bbox[1], bbox[2]]; 
@@ -170,6 +172,12 @@ class Obstacle_Planner:
         t2=t1+delta12;
 
 
+        
+        t1=2.2;
+        t0=t1-delta01;
+        t2=t1+delta12;
+
+
         x0=self.position;
         x1=self.evalTraj(t1);
         x2=self.evalTraj(t2);
@@ -195,7 +203,15 @@ class Obstacle_Planner:
         total_duration_function= rospy.get_time()-t_init_function;
         rospy.sleep(upper_bound_time_s - total_duration_function)
         # self.pubGoalTimer.run()
+
+
+        self.time_end_init=rospy.get_time();
+        self.t0=t0;
+
         self.pubGoalTimer=rospy.Timer(rospy.Duration(0.01), self.pubCB)
+
+
+
 
 
         print "End of initializePlanner"
@@ -218,7 +234,7 @@ class Obstacle_Planner:
     def pubCB(self, timer):
         goal=Goal()
         goal.header.stamp=rospy.Time.now();
-        ti=rospy.get_time(); #Same as before, but it's float
+        ti=self.t0+(rospy.get_time()-self.time_end_init); #Same as before, but it's float
 
         whole_traj_ti=self.evalSimpyArray(ti, self.whole_traj)
         whole_traj_dot_ti=self.evalSimpyArray(ti, self.whole_traj_dot)
@@ -253,9 +269,9 @@ class Obstacle_Planner:
 
     def pubTrajCB(self, timer):
         t=rospy.get_time();
-        self.dyn_traj_msg.pos.x=eval(self.dyn_traj_msg.function[0])
-        self.dyn_traj_msg.pos.y=eval(self.dyn_traj_msg.function[1])
-        self.dyn_traj_msg.pos.z=eval(self.dyn_traj_msg.function[2])
+        self.dyn_traj_msg.pos.x=eval(self.dyn_traj_msg.s_mean[0])  
+        self.dyn_traj_msg.pos.y=eval(self.dyn_traj_msg.s_mean[1])
+        self.dyn_traj_msg.pos.z=eval(self.dyn_traj_msg.s_mean[2])
         self.dyn_traj_msg.header.stamp= rospy.Time.now();
         self.pubTraj.publish(self.dyn_traj_msg);
 

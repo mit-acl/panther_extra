@@ -1,4 +1,18 @@
-install sympy in the snapdragon:
+
+To run the sim with the trajectories by the agents:
+
+roslaunch snap_sim sim.launch num:=04 x:=3 y:=0
+roslaunch snap_sim sim.launch num:=06 x:=-3 y:=0
+roslaunch snap_sim sim.launch num:=08 x:=0 y:=-3
+
+roslaunch mader_other obstacle.launch quad:=SQ04s
+roslaunch mader_other obstacle.launch quad:=SQ06s
+roslaunch mader_other obstacle.launch quad:=SQ08s
+
+roslaunch behavior_selector gui.launch
+
++++++++++++++++++++++++++++++++++++++++++++
+install sympy in the snapdragon or sykorsky:
 
 sudo apt-get install python-sympy --no-install-recommends
 
