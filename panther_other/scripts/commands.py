@@ -9,7 +9,7 @@
 #  * -------------------------------------------------------------------------- */
 
 import rospy
-from mader_msgs.msg import WhoPlans
+from panther_msgs.msg import WhoPlans
 from snapstack_msgs.msg import Goal, State
 from geometry_msgs.msg import Pose, PoseStamped
 from snapstack_msgs.msg import QuadFlightMode
@@ -22,7 +22,7 @@ def quat2yaw(q):
                      1 - 2 * (q.y * q.y + q.z * q.z))
     return yaw
 
-class Mader_Commands:
+class Panther_Commands:
 
     def __init__(self):
         self.whoplans=WhoPlans();
@@ -65,7 +65,7 @@ class Mader_Commands:
             self.kill()
             print "Killed done"
 
-        if req.mode == req.LAND and self.whoplans.value==self.whoplans.MADER:
+        if req.mode == req.LAND and self.whoplans.value==self.whoplans.PANTHER:
             print "Landing"
             self.land()
             print "Landing done"
@@ -96,7 +96,7 @@ class Mader_Commands:
             self.sendGoal(goal)
         ######## 
         rospy.sleep(0.1) 
-        self.whoplans.value=self.whoplans.MADER
+        self.whoplans.value=self.whoplans.PANTHER
         self.sendWhoPlans();
 
     def land(self):
@@ -136,7 +136,7 @@ class Mader_Commands:
     def sendGoal(self, goal):
         # goal.yaw = quat2yaw(self.pose.orientation)
         goal.header.stamp = rospy.get_rostime()
-        # print("[mader_cmds.py] Sending goal.yaw=",goal.yaw);
+        # print("[panther_cmds.py] Sending goal.yaw=",goal.yaw);
         self.pubGoal.publish(goal)
 
     # def pubFirstTerminalGoal(self):
@@ -151,13 +151,13 @@ class Mader_Commands:
 
                   
 def startNode():
-    c = Mader_Commands()
+    c = Panther_Commands()
     #s = rospy.Service("/change_mode",MissionModeChange,c.srvCB)
     rospy.Subscriber("state", State, c.stateCB)
     rospy.Subscriber("/globalflightmode", QuadFlightMode, c.globalflightmodeCB)
     rospy.spin()
 
 if __name__ == '__main__':
-    rospy.init_node('mader_commands')  
+    rospy.init_node('panther_commands')  
     startNode()
     print "Behavior selector started" 

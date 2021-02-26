@@ -76,6 +76,6 @@ tmux -2 attach-session -t $SESSION
 
 
 #tmux send-keys -t $SESSION:0.0 "roslaunch aclswarm snapstack_cntrl.launch" C-m
-# tmux send-keys -t $SESSION:0.1 "roslaunch mader_other obstacle.launch quad:=$VEH$NUM" C-m
+# tmux send-keys -t $SESSION:0.1 "roslaunch panther_other obstacle.launch quad:=$VEH$NUM" C-m
 #tmux send-keys -t $SESSION:0.1 "roslaunch aclswarm start.launch veh:=$VEH$NUM use_assignment:=true"
 #tmux send-keys -t $SESSION:0.6 "rosrun aclswarm bagrecord.sh -o $VEH$NUM"

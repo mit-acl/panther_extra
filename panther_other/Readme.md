@@ -5,9 +5,9 @@ roslaunch snap_sim sim.launch num:=04 x:=3 y:=0
 roslaunch snap_sim sim.launch num:=06 x:=-3 y:=0
 roslaunch snap_sim sim.launch num:=08 x:=0 y:=-3
 
-roslaunch mader_other obstacle.launch quad:=SQ04s
-roslaunch mader_other obstacle.launch quad:=SQ06s
-roslaunch mader_other obstacle.launch quad:=SQ08s
+roslaunch panther_other obstacle.launch quad:=SQ04s
+roslaunch panther_other obstacle.launch quad:=SQ06s
+roslaunch panther_other obstacle.launch quad:=SQ08s
 
 roslaunch behavior_selector gui.launch
 
@@ -19,7 +19,7 @@ sudo apt-get install python-sympy --no-install-recommends
 To run the stuff: 
 
 In Sykorsky: roslaunch behavior_selector gui.launch
-In Drone: roslaunch mader_other obstacle.launch quad:=HX04
+In Drone: roslaunch panther_other obstacle.launch quad:=HX04
 
 And then press start
 

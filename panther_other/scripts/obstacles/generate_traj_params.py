@@ -68,7 +68,7 @@ all_drones=[     #"name",     "bbox",      "slower", "offset", "lim_x",    "lim_
 
 
 tmp = rospkg.RosPack()
-pwd_package=tmp.get_path('mader_other')
+pwd_package=tmp.get_path('panther_other')
 
 t=sp.symbols('t')
 

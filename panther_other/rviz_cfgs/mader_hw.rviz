@@ -97,7 +97,7 @@ Visualization Manager:
       History Length: 1
       Name: GTerm
       Radius: 0.200000003
-      Topic: /SQ01s/mader/point_G_term
+      Topic: /SQ01s/panther/point_G_term
       Unreliable: false
       Value: true
     - Alpha: 1
@@ -120,7 +120,7 @@ Visualization Manager:
       Value: false
     - Class: rviz/Marker
       Enabled: false
-      Marker Topic: /HX09/mader/actual_traj
+      Marker Topic: /HX09/panther/actual_traj
       Name: RealTrajectory
       Namespaces:
         {}
@@ -128,7 +128,7 @@ Visualization Manager:
       Value: false
     - Class: rviz/Marker
       Enabled: true
-      Marker Topic: /HX09/mader/fov
+      Marker Topic: /HX09/panther/fov
       Name: FOV
       Namespaces:
         {}
@@ -228,7 +228,7 @@ Visualization Manager:
       Value: false
     - Class: rviz/Marker
       Enabled: false
-      Marker Topic: /HX09/mader/obstacles
+      Marker Topic: /HX09/panther/obstacles
       Name: CvxPolyObstacles
       Namespaces:
         {}
@@ -236,7 +236,7 @@ Visualization Manager:
       Value: false
     - Class: rviz/MarkerArray
       Enabled: false
-      Marker Topic: /HX09/mader/traj_obtained
+      Marker Topic: /HX09/panther/traj_obtained
       Name: Traj_Obtained
       Namespaces:
         {}
@@ -244,7 +244,7 @@ Visualization Manager:
       Value: false
     - Class: rviz/Marker
       Enabled: false
-      Marker Topic: /SQ01s/mader/actual_traj
+      Marker Topic: /SQ01s/panther/actual_traj
       Name: ActTraj
       Namespaces:
         {}

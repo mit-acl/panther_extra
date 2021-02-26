@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <package>
-  <name>mader_other</name>
+  <name>panther_other</name>
   <version>0.0.0</version>
-  <description>The mader_other package</description>
+  <description>The panther_other package</description>
 
 
   <maintainer email="jtorde@mit.edu">jtorde</maintainer>

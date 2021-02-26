@@ -4,7 +4,7 @@
 <arg name="quad" default="HX09"/>
 <arg name="pub_tf_drone2camera" default="true"/>
 
-    <include file="$(find mader_other)/launch/rs_camera.launch">
+    <include file="$(find panther_other)/launch/rs_camera.launch">
       <arg name="camera"                value="$(arg quad)/camera"/>
     </include>
 

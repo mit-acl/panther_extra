@@ -9,7 +9,7 @@
 #  * -------------------------------------------------------------------------- */
 
 import rospy
-from mader_msgs.msg import WhoPlans, DynTraj
+from panther_msgs.msg import WhoPlans, DynTraj
 from snapstack_msgs.msg import Goal, State
 from geometry_msgs.msg import Pose, PoseStamped
 from snapstack_msgs.msg import QuadFlightMode
@@ -50,7 +50,7 @@ class Obstacle_Planner:
         self.dyn_traj_msg=DynTraj(); 
         self.dyn_traj_msg.is_agent=False;
 
-        #TODO: note that in pubCB I'm not using rosTime direcly. Need to include this "offset" in the strings below. Not important when dyn_traj_msg is not used by MADER (i.e. when MADER is running its own tracker)
+        #TODO: note that in pubCB I'm not using rosTime direcly. Need to include this "offset" in the strings below. Not important when dyn_traj_msg is not used by PANTHER (i.e. when PANTHER is running its own tracker)
         self.dyn_traj_msg.s_mean = [str(self.traj[0]), str(self.traj[1]), str(self.traj[2]-self.bbox[2]/2.0)] #Two notes here:
                                                                                                                    #dyn_traj_msg will not be accurate in the line/polynomial segments, but don't care about them (initialization) 
                                                                                                                    #I'm substracting self.bbox[2]/2.0 because in the obstacles-drones, the drone is on top of the cylinder that makes the obstacle 
@@ -87,7 +87,7 @@ class Obstacle_Planner:
         marker.pose.orientation.w=1.0;
         marker.lifetime = rospy.Duration.from_sec(0.0);
         marker.mesh_use_embedded_materials=True
-        marker.mesh_resource="package://mader/meshes/ConcreteDamage01b/model3.dae"
+        marker.mesh_resource="package://panther/meshes/ConcreteDamage01b/model3.dae"
 
         marker.scale.x=bbox[0];
         marker.scale.y=bbox[1];
@@ -224,10 +224,10 @@ class Obstacle_Planner:
             while not rospy.is_shutdown():
                 print "Waiting until state is initialized" #Note that stateCB runs in parallel!
 
-        if(data.value==data.MADER and self.whoplans.value==self.whoplans.OTHER):
+        if(data.value==data.PANTHER and self.whoplans.value==self.whoplans.OTHER):
             self.initializePlanner()
             self.whoplans=data;
-        elif(data.value==data.OTHER and self.whoplans.value==self.whoplans.MADER):
+        elif(data.value==data.OTHER and self.whoplans.value==self.whoplans.PANTHER):
             self.abortPlanner()
             self.whoplans=data;
 
@@ -261,7 +261,7 @@ class Obstacle_Planner:
         goal.yaw = 0.0
         goal.power= True; #Turn on the motors
 
-        if(self.whoplans.value==self.whoplans.MADER):
+        if(self.whoplans.value==self.whoplans.PANTHER):
             self.pubGoal.publish(goal)
         else:
             #This case should only happen when I've entered whoplansCB while I was at the same time in pubCB. See comment in comands.py about race conditions.
