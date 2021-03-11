@@ -30,6 +30,8 @@ sudo apt-get install python-sympy --no-install-recommends
 In Sykorsky: roslaunch behavior_selector gui.launch
 ```
 
+## Trajs of the obstacles
+
 The file `generate_traj_params.py` will generate the `.yaml` files that specify the trajectories of the obstacles. These files are then used by `obstacle.launch`, which creates the corresponding parameters needed in `obstacles.py`.
 
 ---------
