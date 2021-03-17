@@ -52,23 +52,23 @@ class Panther_Commands:
     #Called when buttom pressed in the interface
     def globalflightmodeCB(self,req):
         if(self.initialized==False):
-            print "Not initialized yet. Is DRONE_NAME/state being published?"
+            print ("Not initialized yet. Is DRONE_NAME/state being published?")
             return
 
         if req.mode == req.GO and self.whoplans.value==self.whoplans.OTHER:
-            print "Starting taking off"
+            print ("Starting taking off")
             self.takeOff()
-            print "Take off done"
+            print ("Take off done")
 
         if req.mode == req.KILL:
-            print "Killing"
+            print ("Killing")
             self.kill()
-            print "Killed done"
+            print ("Killed done")
 
         if req.mode == req.LAND and self.whoplans.value==self.whoplans.PANTHER:
-            print "Landing"
+            print ("Landing")
             self.land()
-            print "Landing done"
+            print ("Landing done")
 
 
     def sendWhoPlans(self):
@@ -107,9 +107,9 @@ class Panther_Commands:
         goal.p.y = self.pose.position.y;
         goal.p.z = self.pose.position.z;
         goal.power= True; #Motors still on
-        print "self.pose.orientation= ", self.pose.orientation
+        print ("self.pose.orientation= ", self.pose.orientation)
         goal.yaw = quat2yaw(self.pose.orientation)
-        print "goal.yaw= ", goal.yaw
+        print ("goal.yaw= ", goal.yaw)
 
 
         #Note that self.pose.position is being updated in the parallel callback
@@ -160,4 +160,4 @@ def startNode():
 if __name__ == '__main__':
     rospy.init_node('panther_commands')  
     startNode()
-    print "Behavior selector started" 
+    print ("Behavior selector started") 
