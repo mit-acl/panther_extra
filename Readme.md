@@ -18,6 +18,7 @@ The param used in these files
 ```
 
 are available in tag `RAL_hw` (commit [`922e2c1d5bcb693ae` of PANTHER](https://github.com/mit-acl/panther/tree/922e2c1d5bcb693aed26097fbc00e9772aa5d390)).
+Additionally, you may want to change (for better performance) `linear_solver_name='mumps'` to `linear_solver_name='ma57'` (or ma27) in main.m
 
 To install sympy in the SnapDragon or Sykorsky:
 
