@@ -17,7 +17,7 @@ The param used in these files
 	panther/matlab/casadi_generated_files/params_casadi.yaml  [To change the parameters of this file, you must change it in main.m, and run that file again]
 ```
 
-are available in tag `RAL_hw` (commit [`922e2c1d5bcb693ae` of PANTHER](https://github.com/mit-acl/panther/tree/922e2c1d5bcb693aed26097fbc00e9772aa5d390)).
+are available in tag `RAL_hw` (commit [`922e2c1d5bcb693ae` of PANTHER](https://github.com/mit-acl/panther/tree/922e2c1d5bcb693aed26097fbc00e9772aa5d390)). But check also [these changes](https://github.com/mit-acl/panther/commit/b22708974cf0ee4e7f0c1cdf135019c442920797). 
 Additionally, you may want to change (for better performance) `linear_solver_name='mumps'` to `linear_solver_name='ma57'` (or ma27) in main.m
 
 To install sympy in the SnapDragon or Sykorsky:
