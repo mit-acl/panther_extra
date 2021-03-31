@@ -1,0 +1,21 @@
+# Filter params
+theta:      0.95     # Position gh filter constant 
+kAtt:       0.005    # Attitude filter constant
+kGyroBias:  0.0004   # Gyro bias constant
+kAccelBias: 0.2      # Accel bias constant
+controlDT:  0.002    # Attitude controller rate (should match imu rate specified in imu_app) 
+
+# LPF gain [0,1] - larger value means more aggressive filtering
+alpha/a_xy: 0.4 #0.70
+alpha/a_z:  0.4 #0.80
+alpha/g:    0.6 #0.60
+
+
+# Drag coefficient of the propeller. It is such that the 
+# moment created by one motor **around the motor axis** is M=cd*f, 
+# where f is the thrust produced by that motor. M in N.m, and f in N
+cd: 0.02 
+
+# 3300mAh 4s
+thrust_curve: [0.0, 0.1, 0.0] #This is for a **single** motor. [an ...a1 a0] such that throttle = an*f^n + ... + a1*f + a0, where throttle is in [0,1], and f is the thrust of that single motor
+

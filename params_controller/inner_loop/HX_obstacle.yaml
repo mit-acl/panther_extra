@@ -1,0 +1,12 @@
+# NOTE: THIS VALUES NEED TO BE TUNED (right now copied from SQ.yaml)
+# PD gains (/1000)
+Kr: [800.0, 800.0, 800.0]
+Komega: [550.0, 550.0, 550.0]
+
+# Inertia, in kg·(m^2) 
+Jdiag: [0.01, 0.01, 0.01] #//Diagonal elements of the inertia matrix in body frame
+
+# Arm length, in m. Distance from the motor to the c.o.m of the drone
+l: 0.15
+
+mixer: "HEX"
