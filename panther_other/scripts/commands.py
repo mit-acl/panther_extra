@@ -81,7 +81,7 @@ class Panther_Commands:
         goal.p.x = self.pose.position.x;
         goal.p.y = self.pose.position.y;
         goal.p.z = self.pose.position.z;
-        goal.yaw = quat2yaw(self.pose.orientation)
+        goal.psi = quat2yaw(self.pose.orientation)
         goal.power= True; #Turn on the motors
 
         alt_taken_off = self.pose.position.z + 1.0; #Altitude when hovering after taking off
