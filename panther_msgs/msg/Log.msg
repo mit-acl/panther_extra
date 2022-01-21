@@ -28,3 +28,7 @@ bool success_opt
 bool success_replanning
 string info_replan 
 string drone_status 
+
+int64 num_of_obstacles
+int64 num_LPs_run
+float64 mean_time_per_LP_ms
