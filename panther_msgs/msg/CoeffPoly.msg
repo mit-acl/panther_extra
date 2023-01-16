@@ -1,1 +1,0 @@
-float64[] data  #In decreasing order of power (i.e. at^2 + bt +c --> [a b c]
