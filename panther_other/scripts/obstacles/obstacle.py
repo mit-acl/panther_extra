@@ -30,13 +30,13 @@ class Obstacle_Planner:
 
     def __init__(self):
  
-        tmp=rospy.get_namespace();
+        tmp=rospy.get_namespace()
         #https://stackoverflow.com/questions/1450897/remove-characters-except-digits-from-string-using-python
         all=string.maketrans('','')
         tmp=tmp.translate(all, all.translate(all, string.digits))
         self.id=  4000+ int(tmp)  #Current id 4000 to avoid interference with ids from agents #TODO
 
-        self.whoplans=WhoPlans();
+        self.whoplans=WhoPlans()
         self.whoplans.value=self.whoplans.OTHER
 
 
@@ -48,7 +48,7 @@ class Obstacle_Planner:
         self.traj=np.array([self.traj_x, self.traj_y, self.traj_z])
 
         self.dyn_traj_msg=DynTraj(); 
-        self.dyn_traj_msg.is_agent=False;
+        self.dyn_traj_msg.is_agent=False
 
         #TODO: note that in pubCB I'm not using rosTime direcly. Need to include this "offset" in the strings below. Not important when dyn_traj_msg is not used by PANTHER (i.e. when PANTHER is running its own tracker)
         self.dyn_traj_msg.s_mean = [str(self.traj[0]), str(self.traj[1]), str(self.traj[2]-self.bbox[2]/2.0)] #Two notes here:
@@ -56,11 +56,12 @@ class Obstacle_Planner:
                                                                                                                    #I'm substracting self.bbox[2]/2.0 because in the obstacles-drones, the drone is on top of the cylinder that makes the obstacle 
         self.dyn_traj_msg.bbox = self.bbox;# [bbox[0], bbox[1], bbox[2]]; 
         self.dyn_traj_msg.id = self.id
+        self.dyn_traj_msg.is_committed = True
 
         self.marker=self.generateMarker(self.bbox, self.id)
         self.pubMesh=rospy.Publisher('obstacle_mesh', Marker, queue_size=1, latch=True)
 
-        self.state_initialized=False;
+        self.state_initialized=False
 
         self.pubGoal = rospy.Publisher('goal', Goal, queue_size=1)
         self.pubGoalTimer=rospy.Timer(rospy.Duration(0.01), self.pubCB)
